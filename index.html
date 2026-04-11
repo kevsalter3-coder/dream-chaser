@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ReUp — Interactive Prototype</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --teal-50: #E1F5EE; --teal-100: #9FE1CB; --teal-200: #5DCAA5;
+    --teal-400: #1D9E75; --teal-600: #0F6E56; --teal-800: #085041; --teal-900: #04342C;
+    --amber-50: #FAEEDA; --amber-200: #EF9F27; --amber-400: #BA7517; --amber-600: #854F0B; --amber-800: #633806;
+    --red-50: #FCEBEB; --red-400: #E24B4A; --red-600: #A32D2D;
+    --blue-50: #E6F1FB; --blue-400: #378ADD; --blue-600: #185FA5;
+    --green-50: #EAF3DE; --green-400: #639922; --green-600: #3B6D11;
+    --gray-50: #F1EFE8; --gray-100: #D3D1C7; --gray-400: #888780; --gray-600: #5F5E5A;
+    --bg: #F5F4F0;
+    --surface: #FFFFFF;
+    --border: rgba(0,0,0,0.1);
+    --border-md: rgba(0,0,0,0.18);
+    --text: #1A1A1A;
+    --text-sec: #6B6B6B;
+    --text-ter: #9B9B9B;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 20px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1A1A; --surface: #252525;
+      --border: rgba(255,255,255,0.1); --border-md: rgba(255,255,255,0.18);
+      --text: #F0EFE9; --text-sec: #A0A09A; --text-ter: #6A6A65;
+    }
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 16px 60px;
+    color: var(--text);
+  }
+  .header { text-align: center; margin-bottom: 32px; }
+  .wordmark { font-size: 22px; font-weight: 600; color: var(--teal-600); letter-spacing: -0.3px; }
+  .wordmark span { color: var(--text-sec); font-weight: 400; }
+  .tagline { font-size: 13px; color: var(--text-ter); margin-top: 4px; }
+  .flow-nav {
+    display: flex; gap: 8px; justify-content: center;
+    margin-bottom: 28px; flex-wrap: wrap;
+  }
+  .flow-btn {
+    padding: 7px 16px; font-size: 13px;
+    border: 1px solid var(--border-md); border-radius: 99px;
+    cursor: pointer; background: var(--surface); color: var(--text-sec);
+    font-family: inherit; transition: all 0.15s;
+  }
+  .flow-btn:hover { color: var(--text); border-color: var(--gray-400); }
+  .flow-btn.active { background: var(--teal-400); color: #fff; border-color: var(--teal-400); font-weight: 500; }
+  .phone-wrap { display: flex; justify-content: center; }
+  .phone {
+    width: 320px; background: var(--surface);
+    border-radius: 40px; border: 2px solid var(--border-md);
+    overflow: hidden; min-height: 600px;
+    display: flex; flex-direction: column;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.12), 0 4px 16px rgba(0,0,0,0.08);
+  }
+  .phone-bar {
+    background: var(--surface); padding: 14px 24px 8px;
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .phone-time { font-size: 13px; font-weight: 600; color: var(--text); }
+  .phone-icons { font-size: 11px; color: var(--text-sec); }
+  .screen { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+  .nav-header {
+    padding: 14px 20px 12px; display: flex; align-items: center; gap: 10px;
+    border-bottom: 0.5px solid var(--border); background: var(--surface);
+  }
+  .nav-back {
+    width: 30px; height: 30px; border-radius: 50%;
+    border: 1px solid var(--border-md); display: flex; align-items: center;
+    justify-content: center; cursor: pointer; background: transparent;
+    font-size: 15px; color: var(--text-sec); flex-shrink: 0;
+  }
+  .nav-back:hover { background: var(--gray-50); }
+  .nav-title { font-size: 16px; font-weight: 600; color: var(--text); }
+  .nav-action {
+    margin-left: auto; width: 34px; height: 34px;
+    background: var(--teal-400); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; border: none; flex-shrink: 0;
+  }
+  .nav-action:hover { background: var(--teal-600); }
+  .scroll-area { flex: 1; padding: 14px; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; }
+  .section-label {
+    font-size: 10px; font-weight: 600; color: var(--text-ter);
+    letter-spacing: 0.08em; text-transform: uppercase; padding: 6px 2px 2px;
+  }
+  .low-banner {
+    background: var(--amber-50); border-radius: var(--radius-md);
+    padding: 10px 14px; display: flex; align-items: center; gap: 10px;
+    border: 1px solid var(--amber-200);
+  }
+  .low-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--amber-400); flex-shrink: 0; }
+  .low-text { font-size: 13px; color: var(--amber-800); flex: 1; }
+  .low-cta { font-size: 12px; font-weight: 600; color: var(--amber-600); }
+  .item-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); padding: 11px 13px;
+    display: flex; align-items: center; gap: 11px; cursor: pointer;
+    transition: border-color 0.12s;
+  }
+  .item-card:hover { border-color: var(--border-md); }
+  .item-icon {
+    width: 40px; height: 40px; border-radius: var(--radius-md);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+  }
+  .item-info { flex: 1; min-width: 0; }
+  .item-name { font-size: 13px; font-weight: 500; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .item-meta { font-size: 11px; color: var(--text-sec); margin-top: 1px; }
+  .item-days { text-align: right; flex-shrink: 0; }
+  .days-num { font-size: 14px; font-weight: 600; }
+  .days-label { font-size: 10px; color: var(--text-ter); }
+  .bar-wrap { height: 3px; background: var(--border); border-radius: 2px; margin-top: 4px; width: 44px; }
+  .bar-fill { height: 100%; border-radius: 2px; }
+  .days-ok { color: var(--green-600); }
+  .days-low { color: var(--amber-600); }
+  .days-crit { color: var(--red-600); }
+  .tab-bar-bottom {
+    display: flex; border-top: 0.5px solid var(--border);
+    background: var(--surface); flex-shrink: 0;
+  }
+  .tab-item {
+    flex: 1; padding: 10px 4px 14px; display: flex; flex-direction: column;
+    align-items: center; gap: 4px; cursor: pointer; border: none;
+    background: transparent; font-family: inherit;
+  }
+  .tab-dot { width: 18px; height: 3px; border-radius: 2px; background: var(--border); }
+  .tab-item.active .tab-dot { background: var(--teal-400); }
+  .tab-lbl { font-size: 10px; color: var(--text-ter); }
+  .tab-item.active .tab-lbl { color: var(--teal-600); font-weight: 600; }
+  .scan-area {
+    margin: 14px 16px 10px;
+    border: 2px dashed var(--border-md); border-radius: var(--radius-lg);
+    height: 160px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 10px;
+  }
+  .scan-corners { position: relative; width: 96px; height: 80px; }
+  .corner { position: absolute; width: 14px; height: 14px; border-color: var(--teal-400); border-style: solid; }
+  .corner-tl { top: 0; left: 0; border-width: 2px 0 0 2px; }
+  .corner-tr { top: 0; right: 0; border-width: 2px 2px 0 0; }
+  .corner-bl { bottom: 0; left: 0; border-width: 0 0 2px 2px; }
+  .corner-br { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
+  .scan-line { position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-50%); height: 2px; background: var(--teal-400); border-radius: 1px; }
+  .scan-hint { font-size: 12px; color: var(--text-ter); }
+  .demo-btn {
+    margin: 0 16px 10px; padding: 10px;
+    border-radius: var(--radius-md); border: 1px solid var(--border-md);
+    background: var(--gray-50); color: var(--text-sec); font-size: 13px;
+    font-family: inherit; cursor: pointer; text-align: center;
+  }
+  .demo-btn:hover { background: var(--border); }
+  .scan-result {
+    background: var(--teal-50); border-radius: var(--radius-lg);
+    margin: 0 16px 14px; padding: 14px; border: 1px solid var(--teal-200);
+  }
+  .scan-result-name { font-size: 15px; font-weight: 600; color: var(--teal-800); }
+  .scan-result-brand { font-size: 11px; color: var(--teal-600); margin-top: 2px; }
+  .qty-row { display: flex; align-items: center; gap: 10px; margin-top: 12px; }
+  .qty-btn {
+    width: 32px; height: 32px; border-radius: var(--radius-md);
+    border: 1px solid var(--teal-200); background: var(--surface);
+    color: var(--teal-600); font-size: 18px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-family: inherit;
+  }
+  .qty-btn:hover { background: var(--teal-50); }
+  .qty-val { font-size: 16px; font-weight: 600; color: var(--teal-800); min-width: 24px; text-align: center; }
+  .qty-unit { font-size: 13px; color: var(--teal-600); }
+  .add-btn {
+    margin-top: 12px; width: 100%; padding: 10px;
+    background: var(--teal-400); color: #fff; font-size: 14px;
+    font-weight: 600; border: none; border-radius: var(--radius-md);
+    cursor: pointer; font-family: inherit;
+  }
+  .add-btn:hover { background: var(--teal-600); }
+  .alert-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius-lg); margin: 14px 16px 10px; overflow: hidden;
+  }
+  .alert-header {
+    background: var(--amber-50); padding: 13px 16px;
+    display: flex; align-items: center; gap: 11px;
+    border-bottom: 1px solid var(--amber-200);
+  }
+  .alert-icon {
+    width: 38px; height: 38px; border-radius: var(--radius-md);
+    background: var(--amber-200); display: flex; align-items: center;
+    justify-content: center; font-size: 20px; flex-shrink: 0;
+  }
+  .alert-name { font-size: 14px; font-weight: 600; color: var(--amber-800); }
+  .alert-sub { font-size: 12px; color: var(--amber-600); margin-top: 2px; }
+  .alert-body { padding: 14px 16px; }
+  .stat-row { display: flex; gap: 10px; margin-bottom: 14px; }
+  .stat { flex: 1; background: var(--gray-50); border-radius: var(--radius-md); padding: 9px 10px; }
+  .stat-val { font-size: 17px; font-weight: 600; color: var(--text); }
+  .stat-lbl { font-size: 10px; color: var(--text-sec); margin-top: 2px; }
+  .platform-row { display: flex; gap: 8px; }
+  .platform-btn {
+    flex: 1; padding: 10px 8px; border-radius: var(--radius-md);
+    border: 1px solid var(--border-md); background: var(--surface);
+    cursor: pointer; font-size: 12px; font-weight: 600; color: var(--text);
+    font-family: inherit; display: flex; flex-direction: column;
+    align-items: center; gap: 4px; transition: all 0.12s;
+  }
+  .platform-btn:hover { border-color: var(--teal-400); background: var(--teal-50); }
+  .platform-logo { font-size: 10px; color: var(--text-sec); font-weight: 400; }
+  .snooze-row { display: flex; gap: 8px; margin-top: 10px; }
+  .snooze-btn {
+    flex: 1; padding: 8px; border-radius: var(--radius-md);
+    border: 1px solid var(--border); background: transparent;
+    cursor: pointer; font-size: 12px; color: var(--text-sec);
+    font-family: inherit;
+  }
+  .snooze-btn:hover { background: var(--gray-50); }
+  .also-label { font-size: 11px; color: var(--text-ter); font-weight: 600; padding: 0 16px 6px; }
+  .confirm-screen { padding: 16px; flex: 1; display: flex; flex-direction: column; }
+  .confirm-store {
+    display: flex; align-items: center; gap: 12px;
+    padding: 13px; background: var(--gray-50);
+    border-radius: var(--radius-lg); margin-bottom: 16px;
+  }
+  .store-badge {
+    width: 42px; height: 42px; border-radius: var(--radius-md);
+    background: var(--teal-400); display: flex; align-items: center;
+    justify-content: center; font-size: 12px; font-weight: 700; color: #fff;
+    flex-shrink: 0;
+  }
+  .store-name { font-size: 14px; font-weight: 600; color: var(--text); }
+  .store-eta { font-size: 12px; color: var(--text-sec); margin-top: 2px; }
+  .confirm-lbl { font-size: 11px; color: var(--text-ter); font-weight: 600; margin-bottom: 6px; }
+  .confirm-item {
+    display: flex; align-items: center; gap: 11px;
+    padding: 11px 0; border-bottom: 0.5px solid var(--border);
+  }
+  .confirm-item:last-of-type { border-bottom: none; }
+  .confirm-icon {
+    width: 36px; height: 36px; border-radius: var(--radius-md);
+    background: var(--gray-50); display: flex; align-items: center;
+    justify-content: center; font-size: 18px; flex-shrink: 0;
+  }
+  .confirm-name { font-size: 13px; font-weight: 500; color: var(--text); }
+  .confirm-qty-txt { font-size: 11px; color: var(--text-sec); margin-top: 2px; }
+  .confirm-price { font-size: 13px; font-weight: 600; color: var(--text); margin-left: auto; }
+  .spacer { flex: 1; }
+  .total-row {
+    display: flex; justify-content: space-between;
+    padding: 12px 0; border-top: 1px solid var(--border-md);
+  }
+  .total-lbl { font-size: 14px; font-weight: 600; color: var(--text); }
+  .total-val { font-size: 14px; font-weight: 600; color: var(--teal-600); }
+  .send-btn {
+    width: 100%; padding: 13px; background: var(--teal-400); color: #fff;
+    font-size: 14px; font-weight: 600; border: none;
+    border-radius: var(--radius-lg); cursor: pointer; font-family: inherit;
+    margin-top: 12px;
+  }
+  .send-btn:hover { background: var(--teal-600); }
+  .send-btn.blue { background: var(--blue-600); }
+  .send-btn.blue:hover { background: #0C447C; }
+  .success-screen {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 32px 24px; text-align: center; gap: 14px;
+  }
+  .success-icon {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: var(--teal-50); display: flex; align-items: center; justify-content: center;
+  }
+  .success-title { font-size: 18px; font-weight: 600; color: var(--text); }
+  .success-sub { font-size: 13px; color: var(--text-sec); line-height: 1.6; }
+  .back-btn {
+    margin-top: 8px; padding: 11px 28px; background: var(--teal-400);
+    color: #fff; font-size: 14px; font-weight: 600; border: none;
+    border-radius: var(--radius-md); cursor: pointer; font-family: inherit;
+  }
+  .back-btn:hover { background: var(--teal-600); }
+  .paywall-hero {
+    padding: 24px 20px 16px; text-align: center;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .pro-badge {
+    display: inline-block; background: var(--teal-50); color: var(--teal-600);
+    font-size: 11px; font-weight: 700; padding: 4px 14px; border-radius: 99px;
+    margin-bottom: 12px; letter-spacing: 0.04em;
+  }
+  .paywall-title { font-size: 18px; font-weight: 700; color: var(--text); line-height: 1.3; }
+  .paywall-sub { font-size: 13px; color: var(--text-sec); margin-top: 8px; line-height: 1.55; }
+  .price-row { margin: 14px 0 4px; }
+  .price-amount { font-size: 32px; font-weight: 700; color: var(--text); }
+  .price-period { font-size: 14px; color: var(--text-sec); font-weight: 400; }
+  .price-trial { font-size: 11px; color: var(--text-ter); margin-top: 3px; }
+  .feature-list { padding: 12px 20px; }
+  .feat-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 0; border-bottom: 0.5px solid var(--border);
+  }
+  .feat-row:last-child { border-bottom: none; }
+  .feat-check {
+    width: 18px; height: 18px; border-radius: 50%;
+    background: var(--teal-50); display: flex; align-items: center;
+    justify-content: center; flex-shrink: 0;
+  }
+  .feat-text { font-size: 13px; color: var(--text); flex: 1; }
+  .feat-free { font-size: 10px; color: var(--text-ter); }
+  .upgrade-btn {
+    margin: 4px 16px 12px; padding: 14px; background: var(--teal-400);
+    color: #fff; font-size: 14px; font-weight: 700; border: none;
+    border-radius: var(--radius-lg); cursor: pointer; font-family: inherit;
+    width: calc(100% - 32px); display: block;
+  }
+  .upgrade-btn:hover { background: var(--teal-600); }
+  .restore { text-align: center; font-size: 12px; color: var(--text-ter); padding-bottom: 16px; cursor: pointer; }
+  .badge {
+    font-size: 10px; padding: 3px 8px; border-radius: 99px; font-weight: 600;
+  }
+  .badge-red { background: var(--red-50); color: var(--red-600); }
+  .badge-amber { background: var(--amber-50); color: var(--amber-600); }
+  .badge-green { background: var(--green-50); color: var(--green-600); }
+  footer {
+    margin-top: 40px; text-align: center;
+    font-size: 12px; color: var(--text-ter); line-height: 1.7;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="wordmark">Pantry<span>Snap</span></div>
+  <div class="tagline">Interactive prototype · V1.0 · April 2026</div>
+</div>
+
+<div class="flow-nav">
+  <button class="flow-btn active" onclick="showFlow('dashboard', this)">Pantry dashboard</button>
+  <button class="flow-btn" onclick="showFlow('alert', this)">Reorder alert</button>
+  <button class="flow-btn" onclick="showFlow('paywall', this)">Pro upgrade</button>
+</div>
+
+<div class="phone-wrap">
+
+  <!-- DASHBOARD FLOW -->
+  <div class="phone" id="phone-dashboard">
+    <div class="phone-bar">
+      <span class="phone-time">9:41</span>
+      <span class="phone-icons">●●● ▮</span>
+    </div>
+
+    <!-- Main pantry screen -->
+    <div class="screen" id="dash-main">
+      <div class="nav-header">
+        <span class="nav-title">My pantry</span>
+        <div class="nav-action" onclick="showDash('scan')" title="Scan item">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <rect x="2" y="2" width="4" height="4" rx="0.5" stroke="white" stroke-width="1.5"/>
+            <rect x="10" y="2" width="4" height="4" rx="0.5" stroke="white" stroke-width="1.5"/>
+            <rect x="2" y="10" width="4" height="4" rx="0.5" stroke="white" stroke-width="1.5"/>
+            <line x1="10" y1="10" x2="14" y2="10" stroke="white" stroke-width="1.5"/>
+            <line x1="10" y1="10" x2="10" y2="14" stroke="white" stroke-width="1.5"/>
+            <line x1="14" y1="13" x2="14" y2="14" stroke="white" stroke-width="1.5"/>
+          </svg>
+        </div>
+      </div>
+      <div class="scroll-area">
+        <div class="low-banner">
+          <div class="low-dot"></div>
+          <div class="low-text">3 items running low</div>
+          <div class="low-cta">View all</div>
+        </div>
+        <div class="section-label">Dairy</div>
+        <div class="item-card">
+          <div class="item-icon" style="background:#E6F1FB;">🥛</div>
+          <div class="item-info">
+            <div class="item-name">Whole milk</div>
+            <div class="item-meta">Organic Valley · 1 gal</div>
+          </div>
+          <div class="item-days">
+            <div class="days-num days-crit">2</div>
+            <div class="days-label">days left</div>
+            <div class="bar-wrap"><div class="bar-fill" style="width:18%;background:#E24B4A;"></div></div>
+          </div>
+        </div>
+        <div class="item-card">
+          <div class="item-icon" style="background:#EAF3DE;">🧀</div>
+          <div class="item-info">
+            <div class="item-name">Sharp cheddar</div>
+            <div class="item-meta">Tillamook · 8 oz block</div>
+          </div>
+          <div class="item-days">
+            <div class="days-num days-ok">11</div>
+            <div class="days-label">days left</div>
+            <div class="bar-wrap"><div class="bar-fill" style="width:75%;background:#639922;"></div></div>
+          </div>
+        </div>
+        <div class="section-label">Pantry staples</div>
+        <div class="item-card">
+          <div class="item-icon" style="background:#FAEEDA;">🍅</div>
+          <div class="item-info">
+            <div class="item-name">Diced tomatoes</div>
+            <div class="item-meta">Muir Glen · 1 of 2 cans</div>
+          </div>
+          <div class="item-days">
+            <div class="days-num days-low">4</div>
+            <div class="days-label">days left</div>
+            <div class="bar-wrap"><div class="bar-fill" style="width:33%;background:#BA7517;"></div></div>
+          </div>
+        </div>
+        <div class="item-card">
+          <div class="item-icon" style="background:#F1EFE8;">🌾</div>
+          <div class="item-info">
+            <div class="item-name">Pasta — rigatoni</div>
+            <div class="item-meta">De Cecco · 16 oz</div>
+          </div>
+          <div class="item-days">
+            <div class="days-num days-ok">18</div>
+            <div class="days-label">days left</div>
+            <div class="bar-wrap"><div class="bar-fill" style="width:90%;background:#639922;"></div></div>
+          </div>
+        </div>
+        <div class="section-label">Produce</div>
+        <div class="item-card">
+          <div class="item-icon" style="background:#EAF3DE;">🥚</div>
+          <div class="item-info">
+            <div class="item-name">Eggs</div>
+            <div class="item-meta">Pete &amp; Gerry's · 4 remaining</div>
+          </div>
+          <div class="item-days">
+            <div class="days-num days-crit">2</div>
+            <div class="days-label">days left</div>
+            <div class="bar-wrap"><div class="bar-fill" style="width:14%;background:#E24B4A;"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-bar-bottom">
+        <button class="tab-item active"><div class="tab-dot"></div><span class="tab-lbl">Pantry</span></button>
+        <button class="tab-item"><div class="tab-dot"></div><span class="tab-lbl">Alerts</span></button>
+        <button class="tab-item"><div class="tab-dot"></div><span class="tab-lbl">Shopping</span></button>
+        <button class="tab-item"><div class="tab-dot"></div><span class="tab-lbl">Settings</span></button>
+      </div>
+    </div>
+
+    <!-- Scan screen -->
+    <div class="screen" id="dash-scan" style="display:none;">
+      <div class="nav-header">
+        <button class="nav-back" onclick="showDash('main')">←</button>
+        <span class="nav-title">Scan item</span>
+      </div>
+      <div class="scan-area">
+        <div class="scan-corners">
+          <div class="corner corner-tl"></div>
+          <div class="corner corner-tr"></div>
+          <div class="corner corner-bl"></div>
+          <div class="corner corner-br"></div>
+          <div class="scan-line"></div>
+        </div>
+        <div class="scan-hint">Point at a barcode</div>
+      </div>
+      <div style="padding:0 16px 10px;">
+        <div style="font-size:12px;color:var(--text-ter);text-align:center;margin-bottom:10px;">— or tap to simulate —</div>
+        <button class="demo-btn" onclick="showDash('result')">Scan: Whole milk (demo)</button>
+      </div>
+      <div class="scan-result" id="scan-result-box" style="display:none;">
+        <div class="scan-result-name">Organic Whole Milk</div>
+        <div class="scan-result-brand">Organic Valley · UPC 093966001100</div>
+        <div class="qty-row">
+          <button class="qty-btn" onclick="changeQty(-1)">−</button>
+          <span class="qty-val" id="qty-val">1</span>
+          <span class="qty-unit">gallon</span>
+          <button class="qty-btn" onclick="changeQty(1)">+</button>
+        </div>
+        <button class="add-btn" onclick="showDash('main')">Add to pantry</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALERT FLOW -->
+  <div class="phone" id="phone-alert" style="display:none;">
+    <div class="phone-bar">
+      <span class="phone-time">9:41</span>
+      <span class="phone-icons">●●● ▮</span>
+    </div>
+
+    <!-- Alert main -->
+    <div class="screen" id="alert-main">
+      <div class="nav-header">
+        <span class="nav-title">Reorder alert</span>
+      </div>
+      <div class="alert-card">
+        <div class="alert-header">
+          <div class="alert-icon">🥛</div>
+          <div>
+            <div class="alert-name">Whole milk is almost out</div>
+            <div class="alert-sub">Estimated 2 days remaining</div>
+          </div>
+        </div>
+        <div class="alert-body">
+          <div class="stat-row">
+            <div class="stat"><div class="stat-val">~2</div><div class="stat-lbl">days left</div></div>
+            <div class="stat"><div class="stat-val">1 gal</div><div class="stat-lbl">on hand</div></div>
+            <div class="stat"><div class="stat-val">7 days</div><div class="stat-lbl">avg usage</div></div>
+          </div>
+          <div style="font-size:12px;color:var(--text-sec);margin-bottom:12px;">Send to your delivery cart:</div>
+          <div class="platform-row">
+            <button class="platform-btn" onclick="showAlert('instacart')">
+              <span style="font-size:20px;">🛒</span>
+              <span class="platform-logo">Instacart</span>
+            </button>
+            <button class="platform-btn" onclick="showAlert('amazon')">
+              <span style="font-size:20px;">📦</span>
+              <span class="platform-logo">Amazon Fresh</span>
+            </button>
+          </div>
+          <div class="snooze-row">
+            <button class="snooze-btn">Snooze 2 days</button>
+            <button class="snooze-btn">Dismiss</button>
+          </div>
+        </div>
+      </div>
+      <div class="also-label">Also running low</div>
+      <div style="padding:0 16px;display:flex;flex-direction:column;gap:8px;">
+        <div class="item-card">
+          <div class="item-icon" style="background:#FAEEDA;font-size:18px;">🍅</div>
+          <div class="item-info"><div class="item-name">Diced tomatoes</div><div class="item-meta">4 days · 1 can left</div></div>
+          <span class="badge badge-amber">Low</span>
+        </div>
+        <div class="item-card">
+          <div class="item-icon" style="background:#EAF3DE;font-size:18px;">🥚</div>
+          <div class="item-info"><div class="item-name">Eggs</div><div class="item-meta">2 days · 4 remaining</div></div>
+          <span class="badge badge-red">Critical</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Instacart confirm -->
+    <div class="screen" id="alert-instacart" style="display:none;">
+      <div class="nav-header">
+        <button class="nav-back" onclick="showAlert('main')">←</button>
+        <span class="nav-title">Confirm order</span>
+      </div>
+      <div class="confirm-screen">
+        <div class="confirm-store">
+          <div class="store-badge">IC</div>
+          <div>
+            <div class="store-name">Instacart</div>
+            <div class="store-eta">Delivery in 1–2 hrs · Kroger nearby</div>
+          </div>
+        </div>
+        <div class="confirm-lbl">Items to add</div>
+        <div class="confirm-item">
+          <div class="confirm-icon">🥛</div>
+          <div><div class="confirm-name">Organic Whole Milk</div><div class="confirm-qty-txt">Organic Valley · 1 gal</div></div>
+          <div class="confirm-price">$6.49</div>
+        </div>
+        <div class="confirm-item">
+          <div class="confirm-icon">🥚</div>
+          <div><div class="confirm-name">Free Range Eggs</div><div class="confirm-qty-txt">Pete &amp; Gerry's · 12 ct</div></div>
+          <div class="confirm-price">$5.99</div>
+        </div>
+        <div class="spacer"></div>
+        <div class="total-row">
+          <span class="total-lbl">Estimated total</span>
+          <span class="total-val">$12.48</span>
+        </div>
+        <button class="send-btn" onclick="showAlert('sent')">Send to Instacart cart</button>
+      </div>
+    </div>
+
+    <!-- Amazon confirm -->
+    <div class="screen" id="alert-amazon" style="display:none;">
+      <div class="nav-header">
+        <button class="nav-back" onclick="showAlert('main')">←</button>
+        <span class="nav-title">Confirm order</span>
+      </div>
+      <div class="confirm-screen">
+        <div class="confirm-store">
+          <div class="store-badge" style="background:#185FA5;">AF</div>
+          <div>
+            <div class="store-name">Amazon Fresh</div>
+            <div class="store-eta">Same-day delivery available</div>
+          </div>
+        </div>
+        <div class="confirm-lbl">Items to add</div>
+        <div class="confirm-item">
+          <div class="confirm-icon">🥛</div>
+          <div><div class="confirm-name">Organic Whole Milk</div><div class="confirm-qty-txt">365 Whole Foods · 1 gal</div></div>
+          <div class="confirm-price">$5.99</div>
+        </div>
+        <div class="confirm-item">
+          <div class="confirm-icon">🥚</div>
+          <div><div class="confirm-name">Cage Free Eggs</div><div class="confirm-qty-txt">Amazon Fresh · 12 ct</div></div>
+          <div class="confirm-price">$4.79</div>
+        </div>
+        <div class="spacer"></div>
+        <div class="total-row">
+          <span class="total-lbl">Estimated total</span>
+          <span class="total-val">$10.78</span>
+        </div>
+        <button class="send-btn blue" onclick="showAlert('sent')">Send to Amazon Fresh cart</button>
+      </div>
+    </div>
+
+    <!-- Sent success -->
+    <div class="screen" id="alert-sent" style="display:none;">
+      <div class="success-screen">
+        <div class="success-icon">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <path d="M6 14l6 6 10-12" stroke="#0F6E56" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="success-title">Cart updated</div>
+        <div class="success-sub">2 items added. Open your delivery app to review and checkout.</div>
+        <button class="back-btn" onclick="showAlert('main')">Back to alerts</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAYWALL FLOW -->
+  <div class="phone" id="phone-paywall" style="display:none;">
+    <div class="phone-bar">
+      <span class="phone-time">9:41</span>
+      <span class="phone-icons">●●● ▮</span>
+    </div>
+    <div class="screen" style="overflow-y:auto;">
+      <div class="paywall-hero">
+        <div class="pro-badge">ReUp Pro</div>
+        <div class="paywall-title">Never run out.<br>Never over-buy.</div>
+        <div class="paywall-sub">Unlock the full pantry brain — smarter predictions, expiration tracking, and the whole household.</div>
+        <div class="price-row">
+          <span class="price-amount">$4.99</span>
+          <span class="price-period"> / month</span>
+        </div>
+        <div class="price-trial">7-day free trial · cancel anytime</div>
+      </div>
+      <div class="feature-list">
+        <div class="feat-row">
+          <div class="feat-check"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3" stroke="#0F6E56" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+          <span class="feat-text">Unlimited pantry items</span>
+          <span class="feat-free">Free: 50</span>
+        </div>
+        <div class="feat-row">
+          <div class="feat-check"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3" stroke="#0F6E56" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+          <span class="feat-text">Up to 5 household members</span>
+          <span class="feat-free">Free: 1</span>
+        </div>
+        <div class="feat-row">
+          <div class="feat-check"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3" stroke="#0F6E56" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+          <span class="feat-text">ML-powered depletion model</span>
+          <span class="feat-free">Free: basic</span>
+        </div>
+        <div class="feat-row">
+          <div class="feat-check"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3" stroke="#0F6E56" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+          <span class="feat-text">Expiration date tracking</span>
+          <span class="feat-free">Pro only</span>
+        </div>
+        <div class="feat-row">
+          <div class="feat-check"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3" stroke="#0F6E56" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+          <span class="feat-text">All delivery platforms</span>
+          <span class="feat-free">Free: 1</span>
+        </div>
+        <div class="feat-row">
+          <div class="feat-check"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3" stroke="#0F6E56" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+          <span class="feat-text">iOS home screen widget</span>
+          <span class="feat-free">Pro only</span>
+        </div>
+        <div class="feat-row">
+          <div class="feat-check"><svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 5l2.5 2.5L8 3" stroke="#0F6E56" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+          <span class="feat-text">Pantry history &amp; analytics</span>
+          <span class="feat-free">Pro only</span>
+        </div>
+      </div>
+      <button class="upgrade-btn">Start free trial</button>
+      <div class="restore">Restore purchase</div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  ReUp · Interactive prototype · For internal review only<br>
+  Built from PRD v1.0 · April 2026
+</footer>
+
+<script>
+var qty = 1;
+
+function showFlow(f, btn) {
+  document.querySelectorAll('.flow-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  ['dashboard','alert','paywall'].forEach(id => {
+    document.getElementById('phone-' + id).style.display = id === f ? 'flex' : 'none';
+  });
+}
+
+function showDash(s) {
+  document.getElementById('dash-main').style.display = s === 'main' ? 'flex' : 'none';
+  document.getElementById('dash-scan').style.display = (s === 'scan' || s === 'result') ? 'flex' : 'none';
+  document.getElementById('scan-result-box').style.display = s === 'result' ? 'block' : 'none';
+}
+
+function showAlert(s) {
+  ['main','instacart','amazon','sent'].forEach(id => {
+    var el = document.getElementById('alert-' + id);
+    if (el) el.style.display = 'none';
+  });
+  var t = document.getElementById('alert-' + s);
+  if (t) t.style.display = 'flex';
+}
+
+function changeQty(d) {
+  qty = Math.max(1, qty + d);
+  document.getElementById('qty-val').textContent = qty;
+}
+</script>
+</body>
+</html>
