@@ -10,7 +10,6 @@ struct ReUp365App: App {
 
     @StateObject private var pantryVM = PantryViewModel()
 
-    // Notification deep-link state
     @State private var reorderItemID: UUID? = nil
     @State private var showReorderSheet = false
 
@@ -25,9 +24,11 @@ struct ReUp365App: App {
                 }
             }
             .modelContainer(sharedModelContainer)
-            .onChange(of: NotificationService.shared.pendingItemID) { _, id in
+            // Observe the singleton's @Published property via onReceive
+            .onReceive(NotificationService.shared.$pendingItemID) { id in
+                guard let id else { return }
                 reorderItemID = id
-                if id != nil { showReorderSheet = true }
+                showReorderSheet = true
             }
         }
     }

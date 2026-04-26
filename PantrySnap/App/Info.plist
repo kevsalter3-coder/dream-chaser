@@ -2,42 +2,50 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <!-- Camera usage — required before any AVCaptureSession is created -->
+    <!-- Standard bundle keys (Xcode substitutes $(VARIABLE) from build settings) -->
+    <key>CFBundleDevelopmentRegion</key>
+    <string>$(DEVELOPMENT_LANGUAGE)</string>
+    <key>CFBundleExecutable</key>
+    <string>$(EXECUTABLE_NAME)</string>
+    <key>CFBundleIdentifier</key>
+    <string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleName</key>
+    <string>$(PRODUCT_NAME)</string>
+    <key>CFBundlePackageType</key>
+    <string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
+    <key>CFBundleShortVersionString</key>
+    <string>$(MARKETING_VERSION)</string>
+    <key>CFBundleVersion</key>
+    <string>$(CURRENT_PROJECT_VERSION)</string>
+    <key>CFBundleDisplayName</key>
+    <string>ReUp365</string>
+
+    <!-- Camera — required before any AVCaptureSession is created -->
     <key>NSCameraUsageDescription</key>
     <string>ReUp365 uses the camera to scan grocery barcodes and photograph receipts so you can track your pantry automatically.</string>
 
-    <!-- Push notifications (local) -->
+    <!-- Allow querying whether Instacart is installed for deep-link fallback -->
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>instacart</string>
+    </array>
+
+    <!-- Background fetch for future remote-notification support -->
     <key>UIBackgroundModes</key>
     <array>
         <string>fetch</string>
         <string>remote-notification</string>
     </array>
 
-    <!-- Instacart deep-link scheme in LSApplicationQueriesSchemes so canOpenURL works -->
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-        <string>instacart</string>
-    </array>
-
-    <!-- Minimum iOS version -->
-    <key>MinimumOSVersion</key>
-    <string>17.0</string>
-
-    <!-- App Transport Security: allow Open Food Facts over HTTPS -->
+    <!-- App Transport Security: all traffic over HTTPS -->
     <key>NSAppTransportSecurity</key>
     <dict>
         <key>NSAllowsArbitraryLoads</key>
         <false/>
     </dict>
 
-    <key>CFBundleDisplayName</key>
-    <string>ReUp365</string>
-    <key>CFBundleIdentifier</key>
-    <string>com.reup365.app</string>
-    <key>CFBundleShortVersionString</key>
-    <string>1.0</string>
-    <key>CFBundleVersion</key>
-    <string>1</string>
     <key>LSRequiresIPhoneOS</key>
     <true/>
     <key>UILaunchScreen</key>

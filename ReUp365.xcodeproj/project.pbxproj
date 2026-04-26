@@ -1,0 +1,505 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AA000000000000000000001B /* ReUp365App.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000000000000000000001A /* ReUp365App.swift */; };
+		AA000000000000000000001E /* PantryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000000000000000000001D /* PantryItem.swift */; };
+		AA0000000000000000000020 /* Household.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000000000000000000001F /* Household.swift */; };
+		AA0000000000000000000022 /* DepletionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000021 /* DepletionModel.swift */; };
+		AA0000000000000000000024 /* PantryDashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000023 /* PantryDashboardView.swift */; };
+		AA0000000000000000000026 /* PantryItemCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000025 /* PantryItemCardView.swift */; };
+		AA0000000000000000000028 /* PantryItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000027 /* PantryItemDetailView.swift */; };
+		AA000000000000000000002A /* BarcodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000029 /* BarcodeScannerView.swift */; };
+		AA000000000000000000002C /* ReceiptScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000000000000000000002B /* ReceiptScannerView.swift */; };
+		AA000000000000000000002E /* PantryItemConfirmSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000000000000000000002D /* PantryItemConfirmSheet.swift */; };
+		AA0000000000000000000030 /* ReceiptReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000000000000000000002F /* ReceiptReviewView.swift */; };
+		AA0000000000000000000032 /* ReorderSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000031 /* ReorderSheetView.swift */; };
+		AA0000000000000000000034 /* InstacartHandoffView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000033 /* InstacartHandoffView.swift */; };
+		AA0000000000000000000036 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000035 /* SettingsView.swift */; };
+		AA0000000000000000000038 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000037 /* OnboardingView.swift */; };
+		AA000000000000000000003A /* PantryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000039 /* PantryViewModel.swift */; };
+		AA000000000000000000003C /* ScannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000000000000000000003B /* ScannerViewModel.swift */; };
+		AA000000000000000000003E /* ReorderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000000000000000000003D /* ReorderViewModel.swift */; };
+		AA0000000000000000000040 /* BarcodeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000000000000000000003F /* BarcodeService.swift */; };
+		AA0000000000000000000042 /* OCRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000041 /* OCRService.swift */; };
+		AA0000000000000000000044 /* InstacartService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000043 /* InstacartService.swift */; };
+		AA0000000000000000000046 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000045 /* NotificationService.swift */; };
+		AA0000000000000000000048 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000047 /* APIClient.swift */; };
+		AA000000000000000000004A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000049 /* Extensions.swift */; };
+		AA000000000000000000004C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000000000000000000004B /* Constants.swift */; };
+		AA000000000000000000004E /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA000000000000000000004D /* KeychainService.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		AA000000000000000000001A /* ReUp365App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PantrySnap/App/ReUp365App.swift"; sourceTree = SOURCE_ROOT; };
+		AA000000000000000000001C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PantrySnap/App/Info.plist"; sourceTree = SOURCE_ROOT; };
+		AA000000000000000000001D /* PantryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PantrySnap/Models/PantryItem.swift"; sourceTree = SOURCE_ROOT; };
+		AA000000000000000000001F /* Household.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PantrySnap/Models/Household.swift"; sourceTree = SOURCE_ROOT; };
+		AA0000000000000000000021 /* DepletionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PantrySnap/Models/DepletionModel.swift"; sourceTree = SOURCE_ROOT; };
+		AA0000000000000000000023 /* PantryDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PantrySnap/Views/Dashboard/PantryDashboardView.swift"; sourceTree = SOURCE_ROOT; };
+		AA0000000000000000000025 /* PantryItemCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PantrySnap/Views/Dashboard/PantryItemCardView.swift"; sourceTree = SOURCE_ROOT; };
+		AA0000000000000000000027 /* PantryItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PantrySnap/Views/Dashboard/PantryItemDetailView.swift"; sourceTree = SOURCE_ROOT; };
+		AA0000000000000000000029 /* BarcodeScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PantrySnap/Views/Scanner/BarcodeScannerView.swift"; sourceTree = SOURCE_ROOT; };
+		AA000000000000000000002B /* ReceiptScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PantrySnap/Views/Scanner/ReceiptScannerView.swift"; sourceTree = SOURCE_ROOT; };
+		AA000000000000000000002D /* PantryItemConfirmSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PantrySnap/Views/Scanner/PantryItemConfirmSheet.swift"; sourceTree = SOURCE_ROOT; };
+		AA000000000000000000002F /* ReceiptReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PantrySnap/Views/Scanner/ReceiptReviewView.swift"; sourceTree = SOURCE_ROOT; };
+		AA0000000000000000000031 /* ReorderSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PantrySnap/Views/Reorder/ReorderSheetView.swift"; sourceTree = SOURCE_ROOT; };
+		AA0000000000000000000033 /* InstacartHandoffView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PantrySnap/Views/Reorder/InstacartHandoffView.swift"; sourceTree = SOURCE_ROOT; };
+		AA0000000000000000000035 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PantrySnap/Views/Settings/SettingsView.swift"; sourceTree = SOURCE_ROOT; };
+		AA0000000000000000000037 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PantrySnap/Views/Onboarding/OnboardingView.swift"; sourceTree = SOURCE_ROOT; };
+		AA0000000000000000000039 /* PantryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PantrySnap/ViewModels/PantryViewModel.swift"; sourceTree = SOURCE_ROOT; };
+		AA000000000000000000003B /* ScannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PantrySnap/ViewModels/ScannerViewModel.swift"; sourceTree = SOURCE_ROOT; };
+		AA000000000000000000003D /* ReorderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PantrySnap/ViewModels/ReorderViewModel.swift"; sourceTree = SOURCE_ROOT; };
+		AA000000000000000000003F /* BarcodeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PantrySnap/Services/BarcodeService.swift"; sourceTree = SOURCE_ROOT; };
+		AA0000000000000000000041 /* OCRService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PantrySnap/Services/OCRService.swift"; sourceTree = SOURCE_ROOT; };
+		AA0000000000000000000043 /* InstacartService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PantrySnap/Services/InstacartService.swift"; sourceTree = SOURCE_ROOT; };
+		AA0000000000000000000045 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PantrySnap/Services/NotificationService.swift"; sourceTree = SOURCE_ROOT; };
+		AA0000000000000000000047 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PantrySnap/Services/APIClient.swift"; sourceTree = SOURCE_ROOT; };
+		AA0000000000000000000049 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PantrySnap/Utilities/Extensions.swift"; sourceTree = SOURCE_ROOT; };
+		AA000000000000000000004B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PantrySnap/Utilities/Constants.swift"; sourceTree = SOURCE_ROOT; };
+		AA000000000000000000004D /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PantrySnap/Utilities/KeychainService.swift"; sourceTree = SOURCE_ROOT; };
+		AA0000000000000000000005 /* ReUp365.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReUp365.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AA0000000000000000000007 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AA0000000000000000000002 /* ReUp365 */ = {
+			isa = PBXGroup;
+			children = (
+				AA000000000000000000000F /* App */,
+				AA0000000000000000000010 /* Models */,
+				AA0000000000000000000011 /* Views */,
+				AA0000000000000000000017 /* ViewModels */,
+				AA0000000000000000000018 /* Services */,
+				AA0000000000000000000019 /* Utilities */,
+				AA0000000000000000000003 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000003 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AA0000000000000000000005 /* ReUp365.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AA000000000000000000000F /* App */ = {
+			isa = PBXGroup;
+			children = (
+				AA000000000000000000001A /* ReUp365App.swift */,
+				AA000000000000000000001C /* Info.plist */,
+			);
+			name = App;
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000010 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AA000000000000000000001D /* PantryItem.swift */,
+				AA000000000000000000001F /* Household.swift */,
+				AA0000000000000000000021 /* DepletionModel.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000011 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AA0000000000000000000012 /* Dashboard */,
+				AA0000000000000000000013 /* Scanner */,
+				AA0000000000000000000014 /* Reorder */,
+				AA0000000000000000000015 /* Settings */,
+				AA0000000000000000000016 /* Onboarding */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000012 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				AA0000000000000000000023 /* PantryDashboardView.swift */,
+				AA0000000000000000000025 /* PantryItemCardView.swift */,
+				AA0000000000000000000027 /* PantryItemDetailView.swift */,
+			);
+			name = Dashboard;
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000013 /* Scanner */ = {
+			isa = PBXGroup;
+			children = (
+				AA0000000000000000000029 /* BarcodeScannerView.swift */,
+				AA000000000000000000002B /* ReceiptScannerView.swift */,
+				AA000000000000000000002D /* PantryItemConfirmSheet.swift */,
+				AA000000000000000000002F /* ReceiptReviewView.swift */,
+			);
+			name = Scanner;
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000014 /* Reorder */ = {
+			isa = PBXGroup;
+			children = (
+				AA0000000000000000000031 /* ReorderSheetView.swift */,
+				AA0000000000000000000033 /* InstacartHandoffView.swift */,
+			);
+			name = Reorder;
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000015 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				AA0000000000000000000035 /* SettingsView.swift */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000016 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				AA0000000000000000000037 /* OnboardingView.swift */,
+			);
+			name = Onboarding;
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000017 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				AA0000000000000000000039 /* PantryViewModel.swift */,
+				AA000000000000000000003B /* ScannerViewModel.swift */,
+				AA000000000000000000003D /* ReorderViewModel.swift */,
+			);
+			name = ViewModels;
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000018 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				AA000000000000000000003F /* BarcodeService.swift */,
+				AA0000000000000000000041 /* OCRService.swift */,
+				AA0000000000000000000043 /* InstacartService.swift */,
+				AA0000000000000000000045 /* NotificationService.swift */,
+				AA0000000000000000000047 /* APIClient.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		AA0000000000000000000019 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				AA0000000000000000000049 /* Extensions.swift */,
+				AA000000000000000000004B /* Constants.swift */,
+				AA000000000000000000004D /* KeychainService.swift */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AA0000000000000000000004 /* ReUp365 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA000000000000000000000A /* Build configuration list for PBXNativeTarget "ReUp365" */;
+			buildPhases = (
+				AA0000000000000000000006 /* Sources */,
+				AA0000000000000000000007 /* Frameworks */,
+				AA0000000000000000000008 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ReUp365;
+			productName = ReUp365;
+			productReference = AA0000000000000000000005 /* ReUp365.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AA0000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					AA0000000000000000000004 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = AA0000000000000000000009 /* Build configuration list for PBXProject "ReUp365" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AA0000000000000000000002;
+			productRefGroup = AA0000000000000000000003 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AA0000000000000000000004 /* ReUp365 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AA0000000000000000000008 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AA0000000000000000000006 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA000000000000000000001B /* ReUp365App.swift in Sources */,
+				AA000000000000000000001E /* PantryItem.swift in Sources */,
+				AA0000000000000000000020 /* Household.swift in Sources */,
+				AA0000000000000000000022 /* DepletionModel.swift in Sources */,
+				AA0000000000000000000024 /* PantryDashboardView.swift in Sources */,
+				AA0000000000000000000026 /* PantryItemCardView.swift in Sources */,
+				AA0000000000000000000028 /* PantryItemDetailView.swift in Sources */,
+				AA000000000000000000002A /* BarcodeScannerView.swift in Sources */,
+				AA000000000000000000002C /* ReceiptScannerView.swift in Sources */,
+				AA000000000000000000002E /* PantryItemConfirmSheet.swift in Sources */,
+				AA0000000000000000000030 /* ReceiptReviewView.swift in Sources */,
+				AA0000000000000000000032 /* ReorderSheetView.swift in Sources */,
+				AA0000000000000000000034 /* InstacartHandoffView.swift in Sources */,
+				AA0000000000000000000036 /* SettingsView.swift in Sources */,
+				AA0000000000000000000038 /* OnboardingView.swift in Sources */,
+				AA000000000000000000003A /* PantryViewModel.swift in Sources */,
+				AA000000000000000000003C /* ScannerViewModel.swift in Sources */,
+				AA000000000000000000003E /* ReorderViewModel.swift in Sources */,
+				AA0000000000000000000040 /* BarcodeService.swift in Sources */,
+				AA0000000000000000000042 /* OCRService.swift in Sources */,
+				AA0000000000000000000044 /* InstacartService.swift in Sources */,
+				AA0000000000000000000046 /* NotificationService.swift in Sources */,
+				AA0000000000000000000048 /* APIClient.swift in Sources */,
+				AA000000000000000000004A /* Extensions.swift in Sources */,
+				AA000000000000000000004C /* Constants.swift in Sources */,
+				AA000000000000000000004E /* KeychainService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		AA000000000000000000000B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_IVAR_ACCESS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AA000000000000000000000C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_IVAR_ACCESS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AA000000000000000000000D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "PantrySnap/App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = "1.0";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.reup365.app";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = targeted;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		AA000000000000000000000E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "PantrySnap/App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = "1.0";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.reup365.app";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = targeted;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AA0000000000000000000009 /* Build configuration list for PBXProject "ReUp365" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA000000000000000000000B /* Debug */,
+				AA000000000000000000000C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA000000000000000000000A /* Build configuration list for PBXNativeTarget "ReUp365" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA000000000000000000000D /* Debug */,
+				AA000000000000000000000E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = AA0000000000000000000001 /* Project object */;
+}

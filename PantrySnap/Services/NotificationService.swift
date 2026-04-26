@@ -1,9 +1,10 @@
 import UserNotifications
+import Combine
 import OSLog
 
 private let logger = Logger(subsystem: "com.reup365", category: "NotificationService")
 
-final class NotificationService: NSObject, UNUserNotificationCenterDelegate {
+final class NotificationService: NSObject, ObservableObject, UNUserNotificationCenterDelegate {
     static let shared = NotificationService()
 
     override private init() {
