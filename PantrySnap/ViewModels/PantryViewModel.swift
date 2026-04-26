@@ -2,7 +2,7 @@ import SwiftUI
 import SwiftData
 import OSLog
 
-private let logger = Logger(subsystem: "com.pantrysnap", category: "PantryViewModel")
+private let logger = Logger(subsystem: "com.reup365", category: "PantryViewModel")
 
 @MainActor
 final class PantryViewModel: ObservableObject {

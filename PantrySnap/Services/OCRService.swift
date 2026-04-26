@@ -2,7 +2,7 @@ import Vision
 import UIKit
 import OSLog
 
-private let logger = Logger(subsystem: "com.pantrysnap", category: "OCRService")
+private let logger = Logger(subsystem: "com.reup365", category: "OCRService")
 
 struct ReceiptLineItem {
     var name: String

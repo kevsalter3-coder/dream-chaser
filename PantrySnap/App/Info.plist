@@ -4,7 +4,7 @@
 <dict>
     <!-- Camera usage — required before any AVCaptureSession is created -->
     <key>NSCameraUsageDescription</key>
-    <string>PantrySnap uses the camera to scan grocery barcodes and photograph receipts so you can track your pantry automatically.</string>
+    <string>ReUp365 uses the camera to scan grocery barcodes and photograph receipts so you can track your pantry automatically.</string>
 
     <!-- Push notifications (local) -->
     <key>UIBackgroundModes</key>
@@ -31,9 +31,9 @@
     </dict>
 
     <key>CFBundleDisplayName</key>
-    <string>PantrySnap</string>
+    <string>ReUp365</string>
     <key>CFBundleIdentifier</key>
-    <string>com.pantrysnap.app</string>
+    <string>com.reup365.app</string>
     <key>CFBundleShortVersionString</key>
     <string>1.0</string>
     <key>CFBundleVersion</key>

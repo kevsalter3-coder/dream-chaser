@@ -2,10 +2,10 @@ import SwiftUI
 import SwiftData
 import OSLog
 
-private let logger = Logger(subsystem: "com.pantrysnap", category: "App")
+private let logger = Logger(subsystem: "com.reup365", category: "App")
 
 @main
-struct PantrySnapApp: App {
+struct ReUp365App: App {
     @AppStorage(Constants.AppStorage.hasCompletedOnboarding) private var hasCompletedOnboarding = false
 
     @StateObject private var pantryVM = PantryViewModel()

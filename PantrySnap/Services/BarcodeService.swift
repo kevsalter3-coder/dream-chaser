@@ -1,7 +1,7 @@
 import Foundation
 import OSLog
 
-private let logger = Logger(subsystem: "com.pantrysnap", category: "BarcodeService")
+private let logger = Logger(subsystem: "com.reup365", category: "BarcodeService")
 
 struct ProductLookupResult {
     let name: String

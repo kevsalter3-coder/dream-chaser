@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import OSLog
 
-private let logger = Logger(subsystem: "com.pantrysnap", category: "InstacartService")
+private let logger = Logger(subsystem: "com.reup365", category: "InstacartService")
 
 struct InstacartCartItem {
     let name: String
@@ -16,7 +16,7 @@ final class InstacartService {
 
     /// Creates an Instacart cart and returns the handoff URL.
     /// Falls back to a deep-link search URL if the API is unavailable or key is missing.
-    func createCart(items: [InstacartCartItem], partnerName: String = "PantrySnap") async throws -> URL {
+    func createCart(items: [InstacartCartItem], partnerName: String = "ReUp365") async throws -> URL {
         guard let key = apiKey, !key.isEmpty else {
             logger.warning("No Instacart API key — falling back to deep link")
             return deepLinkURL(for: items.first?.name ?? "")

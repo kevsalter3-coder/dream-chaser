@@ -108,7 +108,7 @@ struct BarcodeScannerView: View {
                 .foregroundStyle(.secondary)
             Text("Camera access required")
                 .font(.title2).fontWeight(.semibold)
-            Text("PantrySnap uses the camera to scan grocery barcodes and add them to your pantry automatically.")
+            Text("ReUp365 uses the camera to scan grocery barcodes and add them to your pantry automatically.")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
@@ -126,7 +126,7 @@ struct BarcodeScannerView: View {
             Image(systemName: "camera.slash").font(.system(size: 56)).foregroundStyle(.secondary)
             Text("Camera access denied")
                 .font(.title3).fontWeight(.semibold)
-            Text("Open Settings to allow camera access for PantrySnap.")
+            Text("Open Settings to allow camera access for ReUp365.")
                 .font(.subheadline).foregroundStyle(.secondary)
                 .multilineTextAlignment(.center).padding(.horizontal, 32)
             Button("Open Settings") {

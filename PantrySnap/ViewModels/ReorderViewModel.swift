@@ -1,7 +1,7 @@
 import SwiftUI
 import OSLog
 
-private let logger = Logger(subsystem: "com.pantrysnap", category: "ReorderViewModel")
+private let logger = Logger(subsystem: "com.reup365", category: "ReorderViewModel")
 
 @MainActor
 final class ReorderViewModel: ObservableObject {

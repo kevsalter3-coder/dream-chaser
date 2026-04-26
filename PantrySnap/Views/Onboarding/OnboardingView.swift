@@ -60,7 +60,7 @@ private struct WelcomePage: View {
             }
 
             VStack(spacing: 12) {
-                Text("PantrySnap")
+                Text("ReUp365")
                     .font(.largeTitle).fontWeight(.bold)
                 Text("Your pantry, on autopilot.")
                     .font(.title3)
@@ -161,7 +161,7 @@ private struct CameraPermissionPage: View {
 
                 Text(isGranted
                     ? "You're all set! Tap Get started to begin scanning."
-                    : "PantrySnap needs camera access to scan barcodes and receipts. Your camera is only used when you actively scan."
+                    : "ReUp365 needs camera access to scan barcodes and receipts. Your camera is only used when you actively scan."
                 )
                 .font(.subheadline)
                 .foregroundStyle(.secondary)

@@ -1,7 +1,7 @@
 import Foundation
 import OSLog
 
-private let logger = Logger(subsystem: "com.pantrysnap", category: "APIClient")
+private let logger = Logger(subsystem: "com.reup365", category: "APIClient")
 
 enum APIError: Error, LocalizedError {
     case invalidURL

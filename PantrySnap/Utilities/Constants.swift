@@ -5,11 +5,11 @@ enum Constants {
         static let openFoodFactsBase    = "https://world.openfoodfacts.org/api/v2"
         static let instacartBase        = "https://connect.instacart.com/v2"
         // Polite identification header for Open Food Facts (not a secret)
-        static let openFoodFactsAgent   = "PantrySnap/1.0 (iOS; contact@pantrysnap.app)"
+        static let openFoodFactsAgent   = "ReUp365/1.0 (iOS; contact@reup365.app)"
     }
 
     enum Keychain {
-        static let instacartAPIKey = "com.pantrysnap.instacart_api_key"
+        static let instacartAPIKey = "com.reup365.instacart_api_key"
     }
 
     enum Notification {

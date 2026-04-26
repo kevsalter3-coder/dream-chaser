@@ -2,7 +2,7 @@ import Foundation
 import Security
 import OSLog
 
-private let logger = Logger(subsystem: "com.pantrysnap", category: "Keychain")
+private let logger = Logger(subsystem: "com.reup365", category: "Keychain")
 
 enum KeychainService {
     static func save(key: String, value: String) {

@@ -1,7 +1,7 @@
 import UserNotifications
 import OSLog
 
-private let logger = Logger(subsystem: "com.pantrysnap", category: "NotificationService")
+private let logger = Logger(subsystem: "com.reup365", category: "NotificationService")
 
 final class NotificationService: NSObject, UNUserNotificationCenterDelegate {
     static let shared = NotificationService()
@@ -98,7 +98,7 @@ final class NotificationService: NSObject, UNUserNotificationCenterDelegate {
     // MARK: - Helpers
 
     private func notificationID(for itemID: UUID) -> String {
-        "pantrysnap.lowstock.\(itemID.uuidString)"
+        "reup365.lowstock.\(itemID.uuidString)"
     }
 
     private func registerCategories() {

@@ -2,7 +2,7 @@ import AVFoundation
 import SwiftUI
 import OSLog
 
-private let logger = Logger(subsystem: "com.pantrysnap", category: "ScannerViewModel")
+private let logger = Logger(subsystem: "com.reup365", category: "ScannerViewModel")
 
 @MainActor
 final class ScannerViewModel: NSObject, ObservableObject {
@@ -15,7 +15,7 @@ final class ScannerViewModel: NSObject, ObservableObject {
     private let supportedTypes: [AVMetadataObject.ObjectType] = [
         .ean13, .ean8, .upce, .code128
     ]
-    private let sessionQueue = DispatchQueue(label: "com.pantrysnap.camera", qos: .userInitiated)
+    private let sessionQueue = DispatchQueue(label: "com.reup365.camera", qos: .userInitiated)
     private let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
 
     override init() {
