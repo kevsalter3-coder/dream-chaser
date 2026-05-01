@@ -31,24 +31,27 @@ final class ScannerViewModel: NSObject, ObservableObject {
         if granted { await configureSession() }
     }
 
-    // MARK: - Session lifecycle (always called on sessionQueue)
+    // MARK: - Session lifecycle
 
     func startSession() {
         guard authorizationStatus == .authorized else { return }
+        // Capture @MainActor properties before crossing into the background queue
+        let session = captureSession
         sessionQueue.async { [weak self] in
             guard let self else { return }
-            if !self.captureSession.isRunning {
-                self.captureSession.startRunning()
+            if !session.isRunning {
+                session.startRunning()
                 Task { @MainActor in self.isSessionRunning = true }
             }
         }
     }
 
     func stopSession() {
+        let session = captureSession
         sessionQueue.async { [weak self] in
             guard let self else { return }
-            if self.captureSession.isRunning {
-                self.captureSession.stopRunning()
+            if session.isRunning {
+                session.stopRunning()
                 Task { @MainActor in self.isSessionRunning = false }
             }
         }
@@ -62,10 +65,12 @@ final class ScannerViewModel: NSObject, ObservableObject {
     // MARK: - Session configuration
 
     private func configureSession() async {
+        let session = captureSession
+        let types = supportedTypes
         sessionQueue.async { [weak self] in
             guard let self else { return }
-            self.captureSession.beginConfiguration()
-            defer { self.captureSession.commitConfiguration() }
+            session.beginConfiguration()
+            defer { session.commitConfiguration() }
 
             guard let device = AVCaptureDevice.default(for: .video),
                   let input = try? AVCaptureDeviceInput(device: device)
@@ -74,15 +79,15 @@ final class ScannerViewModel: NSObject, ObservableObject {
                 return
             }
 
-            if self.captureSession.canAddInput(input) {
-                self.captureSession.addInput(input)
+            if session.canAddInput(input) {
+                session.addInput(input)
             }
 
             let metadataOutput = AVCaptureMetadataOutput()
-            if self.captureSession.canAddOutput(metadataOutput) {
-                self.captureSession.addOutput(metadataOutput)
+            if session.canAddOutput(metadataOutput) {
+                session.addOutput(metadataOutput)
                 metadataOutput.setMetadataObjectsDelegate(self, queue: .main)
-                metadataOutput.metadataObjectTypes = self.supportedTypes
+                metadataOutput.metadataObjectTypes = types
             } else {
                 Task { @MainActor in self.error = .outputUnavailable }
             }
