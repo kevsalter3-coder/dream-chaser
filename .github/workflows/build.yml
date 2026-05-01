@@ -1,0 +1,30 @@
+name: Build
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    name: Build iOS (simulator)
+    runs-on: macos-15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select Xcode 16
+        run: sudo xcode-select -s /Applications/Xcode_16.app/Contents/Developer
+
+      - name: Xcode version
+        run: xcodebuild -version
+
+      - name: Build for simulator
+        run: |
+          xcodebuild \
+            -project ReUp365.xcodeproj \
+            -scheme ReUp365 \
+            -destination 'generic/platform=iOS Simulator' \
+            -configuration Debug \
+            CODE_SIGNING_ALLOWED=NO \
+            build \
+            2>&1 | xcpretty --color --simple || exit ${PIPESTATUS[0]}
